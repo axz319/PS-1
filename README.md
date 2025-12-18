@@ -1,2 +1,2 @@
 # PS-1
-KSP Project М8О-116БВ-25
+Ссылка на видео полёта: https://drive.google.com/file/d/147JZODYfuOPsCZnv1Ujda9i8NmN2N93j/view?usp=sharing
