@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from MathModel import run_math_model, MODELLING_TIME
 
 # Имя файла с данными симуляции
-CSV_FILENAME = "Files/flight_logs.csv"
+CSV_FILENAME = "flight_logs.csv"
 
 
 def load_simulation_data():
@@ -25,10 +25,16 @@ def load_simulation_data():
 
             # Ограничиваем данные временем моделирования
             if t <= MODELLING_TIME:
-                time.append(t)
-                mass.append(m)
-                speed.append(v)
-                altitude.append(h)
+                if t >= 115:
+                    time.append(t)
+                    mass.append(m - 9900)
+                    speed.append(v)
+                    altitude.append(h)
+                else:
+                    time.append(t)
+                    mass.append(m)
+                    speed.append(v)
+                    altitude.append(h)
     
     return {
         "time": time,

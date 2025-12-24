@@ -1,6 +1,6 @@
 from math import exp, pi
 
-MODELLING_TIME = 500  # Время моделирования (секунды)
+MODELLING_TIME = 120  # Время моделирования (секунды)
 DELTA_T = 1           # Шаг времени по умолчанию (секунды)
 
 
@@ -39,10 +39,13 @@ def run_math_model(delta_t: float = DELTA_T):
     STAGE_MASS_DROP = 9000         # Масса первой ступени (кг)
     POWER_AFTER_SEPARATION = 22.7  # Мощность после отделения первой ступени (%)
     ENGINE_CUTOFF_TIME = 105       # Время отключения двигателей (с)
+    SAT_RELEASE_TIME = 115
+
 
     # Флаги для отслеживания событий
     stage_separated = False
     engine_cutoff = False
+    sat_released = False
 
     # ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
     def calculate_temperature(altitude):
@@ -87,6 +90,9 @@ def run_math_model(delta_t: float = DELTA_T):
             power = 0
             engine_cutoff = True
 
+        if not sat_released and t >= SAT_RELEASE_TIME:
+            m -= 9900
+            sat_released = True
         # Расчет параметров
         air_density = calculate_density(h)
         acceleration = calculate_acceleration(h, air_density, v, power, m)

@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+3import matplotlib.pyplot as plt
 
 from MathModel import run_math_model, MODELLING_TIME
 
